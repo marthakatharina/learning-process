@@ -25,17 +25,16 @@
      many times it takes to get a number that is greater than or equal to 1000000 and return that.
 */
 
-
 //1
-// argument keywords
+// argument keywords and for loop
 
 function sum() {
-    return (
-        arguments[0] + arguments[1] + arguments[2] + arguments[3] + arguments[4]
-    );
+    var x = 0;
+    for (var i = 0; i < arguments.length; i++) {
+        x += arguments[i];
+    }
+    return x;
 }
-
-sum(5, 10, 15, 100, 200);
 
 console.log(sum(5, 10, 15, 100, 200));
 
