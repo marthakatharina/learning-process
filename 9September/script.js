@@ -54,11 +54,12 @@ setTimeout(function () {
 function recursion(num) {
     if (num <= 0) {
         return "ERROR";
+        // } else if (num == Number.isNaN) { /// I don't know how to write conditions with isNaN, I also didn't get it in logType fn
+        //     return "ERROR";
     } else if (num >= 1000000) {
         return num;
-    } else if (num * 10) {
-        return num * num;
     } else {
-        return recursion(num >= 1000000);
+        return recursion(num * 10);
     }
 }
+console.log(recursion(10));
