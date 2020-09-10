@@ -1,62 +1,53 @@
 * {
     box-sizing: border-box;
+    /* background-color: white; */
 }
 
 body {
-    background-color: peachpuff;
-    color: white;
+    position: relative;
 }
 
 header {
-    margin: 10px;
     background-color: white;
     height: 50px;
-    border: 1px dashed;
-    /*position: fixed;
-top: ;
-right: ;
-left: ;*/
+    max-width: 100%;
+    position: relative;
 }
 
 #logo {
     float: left;
-    top: 20px;
-    right: 20px;
-    /*position: relative;
-    left: 100px;  moves form original position to right */
 }
 
 #menu {
     background-color: black;
     width: 50px;
-    height: 50px;
+    height: 40px;
     float: right;
-    right: 20px;
 }
 .container {
-    width: 90vw; /* % from width*/
-    height: 90vh;
-    background-color: silver;
-    border: 1px solid black;
+    width: 100vw; /* % from width*/
+    height: 100vh;
     margin: 0 auto;
     position: relative;
+    background-color: silver;
 }
-h3 {
+
+/* h2 {
     margin: 0px;
     position: absolute;
 }
 
-h3:nth-child(1) {
+h2:nth-child(1) {
     top: 0;
     left: 0;
 }
 
-h3:nth-child(2) {
+h2:nth-child(2) {
     top: 0;
     right: 0;
 }
 
-h3:nth-child(3) {
+h2:nth-child(3) {
     bottom: 0;
     left: 0;
 }
@@ -65,7 +56,7 @@ h3:nth-child(4) {
     color: chartreuse;
     bottom: 0;
     right: 0;
-}
+} */
 
 .cover_img {
     background-repeat: no-repeat;
@@ -73,5 +64,46 @@ h3:nth-child(4) {
     max-width: 100%;
     height: auto;
 }
-footer {
+
+.banner {
+    position: absolute;
+    top: 30%;
+    /* width: 100%; */
+    /* transform: translate(-50%);
+    left: 50% */
+    left: 42%;
+    /* text-justify: center; */
+}
+
+h1 {
+    /* width: 100%; */
+    /* text-align: center; */
+    background-color: transparent;
+    color: white;
+    left: -20%;
+}
+
+button {
+    /* left: 42%; */
+    width: 160px;
+    background-color: yellow;
+    color: black;
+    border-radius: 10px;
+}
+
+.paragraf {
+    background-color: silver;
+    margin: 0;
+}
+
+h2 {
+    background-color: silver;
+    margin: 0;
+}
+
+section {
+    display: inline-block;
+}
+
+@media screen and (max-width: 800px;) {
 }
