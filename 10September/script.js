@@ -57,8 +57,8 @@ function each(objOrArr, callBack) {
 
 function arrFun(arr) {
     var x = ["a", "b", "c", "d"];
-    for (var i; i > arr.length; i--) {
-        if ((x.splice(0,3) += arr[i])) {
+    for (var i = 3; i >= x.length; i--) {
+        if (x.splice(0,3) += arr[i]) {
            
         }
     }
