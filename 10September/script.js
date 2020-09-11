@@ -59,6 +59,7 @@ function arrFun(arr) {
     var x = ["a", "b", "c", "d"];
     for (var i = 3; i >= x.length; i--) {
         if (x.slice(0, 4) += arr[i]) {
+        
             
            
         }
@@ -66,5 +67,13 @@ function arrFun(arr) {
     return x;
 } /// I works but I don't understand why it's not inverting the array order since I used i--
 
-console.log(arrFun());
 
+//3
+   
+    function getLessThanZero(x) {
+        var num = [];
+    var minus = num.filter(function(x) {
+        return x.filter < 0;
+    });
+    return minus;
+}
