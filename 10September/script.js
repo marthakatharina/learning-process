@@ -58,12 +58,13 @@ function each(objOrArr, callBack) {
 function arrFun(arr) {
     var x = ["a", "b", "c", "d"];
     for (var i = 3; i >= x.length; i--) {
-        if (x.splice(0,3) += arr[i]) {
+        if (x.slice(0, 4) += arr[i]) {
+            
            
         }
     }
     return x;
 } /// I works but I don't understand why it's not inverting the array order since I used i--
 
-console.log(arrFun(0, 3));
+console.log(arrFun());
 
