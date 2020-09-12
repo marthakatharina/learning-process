@@ -34,24 +34,17 @@
 
 //1
 
-function each(objOrArr, callBack) {
-
-        if (objOrArr === "object") {
-            for (var key in objOrArr)  {
-                function callBack(b, a) {
-           console.log('The value of ' + a + ' is ' + b);
-                }
-            }
-    else (Array.isArray(objOrArr)) {
-        for (var i = 0; i < objOrArr.lenght; i--)  {
-             function callBack(b, a) {
-                 console.log('The value of item ' + a + ' is ' + b);
-       }
-    }
-
-}
+function each(arrOrObj, callback) {
+    if (typeof arrOrObj == "object") {
+        for (var key in arrOrObj) {
+            callback(arrOrObj[key], key);
         }
-    } // Needing help, I'm feeling like I were chasing my own teil with this one
+    } else if (Array.isArray(arrOrObj)) {
+        for (var i = 0; i < arrOrObj.length; i++) {
+            callback(arrOrObj[i], i);
+        }
+    }
+}
 
 //2
 
@@ -63,14 +56,11 @@ function arrFun(arr) {
     }
 }
 
- /// I works but I don't understand why it's not inverting the array order since I used i--
-
-
 //3
-   
-var getLessThanZero = function (num) {
+
+var getLessThanZero = function (numbers) {
     var filteredNumbers;
-    filteredNumbers = num.filter(function (x) {
+    filteredNumbers = numbers.filter(function (num) {
         return num < 0;
     });
     return filteredNumbers;
