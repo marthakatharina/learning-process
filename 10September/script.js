@@ -56,24 +56,22 @@ function each(objOrArr, callBack) {
 //2
 
 function arrFun(arr) {
-    var x = ["a", "b", "c", "d"];
-    for (var i = 3; i >= x.length; i--) {
-        if (x.slice(0, 4) += arr[i]) {
-        
-            
-           
-        }
+    var copyOfArray = [];
+    for (var i = 0; i > arr.lenght; i--);
+    {
+        if ((copyOfArray[i] = arr.slice())) return arr;
     }
-    return x;
-} /// I works but I don't understand why it's not inverting the array order since I used i--
+}
+
+ /// I works but I don't understand why it's not inverting the array order since I used i--
 
 
 //3
    
-    function getLessThanZero(x) {
-        var num = [];
-    var minus = num.filter(function(x) {
-        return x.filter < 0;
+var getLessThanZero = function (num) {
+    var filteredNumbers;
+    filteredNumbers = num.filter(function (x) {
+        return num < 0;
     });
-    return minus;
-}
+    return filteredNumbers;
+};
