@@ -4,6 +4,8 @@
     var links = document.getElementsByTagName("a");
     var movement;
 
+    animateHeadlines();
+
     function animateHeadlines() {
         leftSide -= 1;
         headlinesContainer.style.left = leftSide + "px";
@@ -16,18 +18,21 @@
         movement = requestAnimationFrame(animateHeadlines);
     }
 
-    animateHeadlines();
+    movement = requestAnimationFrame(animateHeadlines);
 
     cancelAnimationFrame(movement);
     for (var i = 0; i < links.length; i++) {
         links[i].addEventListener("mouseenter", function (event) {
-            event.preventDefault(); // stop ticker
-            links[i].style.color = "green";
-            links[i].style.textDecoration = "underline";
+            if (event.innerText === movement) {
+                links[i].style.color = "green";
+                links[i].style.textDecoration = "underline";
+            }
         });
         links[i].removeEventListener("mouseleave", function () {
-            links[i].style.color = "unset";
-            links[i].style.textDecoration = "none";
+            if (event.innerText !== movement) {
+                links[i].style.color = "unset";
+                links[i].style.textDecoration = "none";
+            }
         });
     }
 })();
