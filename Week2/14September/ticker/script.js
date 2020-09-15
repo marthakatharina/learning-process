@@ -1,23 +1,33 @@
 (function () {
-    var headlines = document.getElementById("headlines");
+    var headlinesContainer = document.getElementById("headlines");
+    var leftSide = headlinesContainer.offsetLeft;
     var links = document.getElementsByTagName("a");
+    var movement;
 
-    var left = headlines.offsetLeft;
+    function animateHeadlines() {
+        leftSide -= 1;
+        headlinesContainer.style.left = leftSide + "px";
 
-    moveHeadlines();
-
-    function moveHeadlines() {
-        // left -200 px
-        headlines.style.left = "-200px";
-        // console.log(left);
-
-        // call this fn again after a pause
-        if (left <= -links[0].offsetWidth) {
-            //set the left of headlines to the new left
-            left += links[0].offsetWidth.appendChild(links[0]); // appendChild
-            //take the fist link out and make it the last link
+        if (leftSide <= -links[0].offsetWidth) {
+            leftSide += links[0].offsetWidth;
+            headlinesContainer.appendChild(links[0]);
         }
 
-        requestAnimationFrame(moveHeadlines);
+        movement = requestAnimationFrame(animateHeadlines);
+    }
+
+    animateHeadlines();
+
+    cancelAnimationFrame(movement);
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener("mouseenter", function (event) {
+            event.preventDefault(); // stop ticker
+            links[i].style.color = "green";
+            links[i].style.textDecoration = "underline";
+        });
+        links[i].removeEventListener("mouseleave", function () {
+            links[i].style.color = "unset";
+            links[i].style.textDecoration = "none";
+        });
     }
 })();
