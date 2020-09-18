@@ -1,0 +1,17 @@
+.container {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 70px 1fr 30px;
+}
+
+header {
+    background-color: orange;
+}
+
+main {
+    background-color: gray;
+}
+
+footer {
+    background-color: pink;
+}
