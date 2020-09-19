@@ -22,8 +22,6 @@ function findElement(tagname) {
         textStyles[i].style.fontWeight = "bold";
     }
 }
-
-// console.log
 findElement("p");
 
 //2

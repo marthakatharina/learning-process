@@ -26,4 +26,15 @@ body {
 .kitty-container img.offscreen-left {
     transform: translateX(-100%);
     transition: transform 3s;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#dots {
+    position: absolute;
+    bottom: 30px;
+}
+
+.dot {
 }
