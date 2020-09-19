@@ -25,13 +25,25 @@ function findElement(tagname) {
 findElement("p");
 
 //2
+
 function findClassElements(classname) {
-    var classes = [];
-    classes = document.getElementsByClassName(classname);
+    var classes = document.getElementsByClassName(classname);
+
     return classes;
 }
 
-findClassElement("");
+// or
+
+function findClassElements(classname) {
+    var classes = document.getElementsByClassName(classname);
+    var x = [];
+    for (var i = 0; i < classes.length; i++) {
+        x.push(classes[i]);
+    }
+    return classes;
+}
+
+findClassElements("");
 
 //3
 function insertElement() {
