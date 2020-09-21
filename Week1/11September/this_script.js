@@ -32,3 +32,15 @@ function Square(num) {
         return num * num;
     };
 }
+
+//2
+function invertCase(word) {
+    var newWord = "";
+
+    if (word == word.toUpperCase()) {
+        newWord += word.toLowerCase();
+    } else {
+        newWord += word.toUpperCase();
+    }
+    return newWord;
+}

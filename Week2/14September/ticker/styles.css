@@ -14,6 +14,12 @@
 
 #headlines a {
     padding: 30px;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     text-decoration: none;
+    color: black;
+}
+
+#headlines a:hover {
+    color: blue;
+    text-decoration: underline;
 }

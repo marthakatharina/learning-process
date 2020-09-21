@@ -4,6 +4,8 @@
     var img = 0;
     var timer;
 
+    timer = setTimeout(moveKitties, 3000);
+
     function moveKitties() {
         // to remove a kitty from the screen...
         kitties[img].classList.remove("onscreen");
@@ -14,6 +16,7 @@
 
         img++;
         if (img === 4) {
+            //4 iamges or kittes.lenght
             img = 0;
         }
         // to pull the next kitty onscreen...
@@ -32,17 +35,19 @@
         timer = setTimeout(moveKitties, 3000);
     });
 
+    for (var i = 0; i < dots.lenght; i++) {
+        if (dots[i] == e.target) {
+            console.log(i);
+            break;
+        }
+    }
+
+    // or
     // for (var i = 0; i < dots.length; i++) {
     //     dots[i].addEventListener("click", function (e) {
     //         console.log("clicked");
     //         clearTimeout(timer);
     //         console.log(e.target.dispatchEvent.slice(3));
     //     });
-    // }
-    // for (var i = 0; i < dots.lenght; i++) {
-    //     if (dot[i] == e.target) {
-    //         console.log(i);
-    //         break
-    //     }
     // }
 })(); // INVOKE YOUR IFFE!!!!!!!
