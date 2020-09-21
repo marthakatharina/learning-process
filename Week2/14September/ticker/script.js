@@ -1,9 +1,8 @@
 (function () {
-    // var ticker = document.getElementById(id);
     var headlinesContainer = document.getElementById("headlines");
     var links = document.getElementsByTagName("a");
     var leftSide = headlinesContainer.offsetLeft;
-    // var headlinesWidth = headlinesContainer.offsetWidth;
+
     var movement;
 
     animateHeadlines();
