@@ -16,22 +16,21 @@
         overlayEfects.style.visibility = "hidden";
     });
 
-    // modal jq not working yet :(
-
     var jqModal = $("#modal");
+    console.log("jqModal: ", jqModal);
     var jqcloseModal = $("#modal a");
     var jqOverlay = $("#overlay");
 
-    jqModal.on(
-        setTimeout(function () {
-            jqModal.addClass("overlay");
-            jqOverlay.css({ visibility: "visible" });
-        }, 1000)
-    );
+    setTimeout(function () {
+        // jqModal.show();
+        // jqModal.addClass("overlay");
+        jqModal.css({ visibility: "visible" });
+        jqOverlay.css({ visibility: "visible" });
+    }, 1000);
 
-    //removes the "active" class to .popup and .popup-content when the "Close" button is clicked
     jqcloseModal.on("click", function () {
-        jqModal.removeClass("overlay");
+        jqModal.hide();
+        // jqModal.removeClass("overlay");
         jqOverlay.css({ visibility: "hidden" });
     });
 })();
