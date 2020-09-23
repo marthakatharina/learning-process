@@ -1,18 +1,33 @@
 (function (countries) {
     // console.log('$: ',$);
     // console.log('countries: ',countries);
-    // var searchField = $('input');
-    var searchField = $('input[name="search"]');
+    // var searchField = $('input[name:"search"]'); // if name:"search" used in html input
+    var searchField = $("input");
     var resultsDiv = $(".results");
 
-    console.log("searchField: ", searchField);
+    // console.log("searchField: ", searchField);
+
+    var index = 0;
+    var highlight = false;
+
+    //Clean will delete highlight class everytime we selected something with mouse event and then fire key event or vice versa
+
+    var clean = function () {
+        for (var l = 0; l < $("p").length; l++) {
+            $("p").eq(l).removeClass("highlight");
+        }
+    };
 
     searchField.on("input", function (e) {
         // e.target
         // e.currentTarget
-        console.log("sanity check!!");
-        console.log("searchField.val(): ", searchField.val());
+        // console.log("sanity check!!");
+        // console.log("searchField.val(): ", searchField.val());
         var userInput = searchField.val().toLowerCase();
+        var htmlForCountries = "";
+        index = 0;
+        resultsDiv.show();
+        highlight = false;
 
         var results = [];
         for (var i = 0; i < countries.length; i++) {
@@ -27,26 +42,87 @@
             }
         }
 
+        if (results.length === 0) {
+            htmlForCountries += "<p>No results</p>";
+            resultsDiv.html(htmlForCountries);
+        } else if (searchField.val() === "") {
+            resultsDiv.html("");
+        } else {
+            // console.log("results: ", results);
 
-
-        
-        console.log("results: ", results);
-        var htmlForCountries = "";
-        console.log("htmlForCountries before loop", htmlForCountries);
-        for (var j = 0; j < results.length; j++) {
-            htmlForCountries += "<p class='country'>" + results[j] + "</p>";
-            // console.log('htmlForCountries in loop', htmlForCountries);
+            // console.log("htmlForCountries before loop", htmlForCountries);
+            for (var j = 0; j < results.length; j++) {
+                htmlForCountries += "<p class='country'>" + results[j] + "</p>";
+                // console.log('htmlForCountries in loop', htmlForCountries);
+            }
+            // console.log("htmlForCountries after loop", htmlForCountries);
+            resultsDiv.html(htmlForCountries);
         }
-        console.log("htmlForCountries after loop", htmlForCountries);
-        resultsDiv.html(htmlForCountries);
+        return results;
     });
 
+    resultsDiv.on("mouseover", "p", function (e) {
+        clean();
+        $(e.target).addClass("highlight");
+        highlight = true;
+        index = e.target.id;
+        console.log(index);
+        resultsDiv.on("mouseleave", "p", function (e) {
+            $(e.target).removeClass("highlight");
+            index = 0;
+            highlight = false;
+        });
+    });
+    resultsDiv.on("mousedown", "p", function (e) {
+        searchField.val($(e.target).text());
+        resultsDiv.hide();
+    });
+    searchField.on("keydown", function (e) {
+        for (var k = 0; k < $("p").length; k++) {
+            if ($("p").eq(k).hasClass("highlight")) {
+                highlight = true;
+            }
+        }
+        if (e.keyCode === 13) {
+            searchField.val($(".highlight").text());
+            resultsDiv.hide();
+        }
+        clean();
+        if (e.keyCode === 40 && !highlight) {
+            $("p").eq(index).addClass("highlight");
+            highlight = true;
+        } else if (e.keyCode === 40) {
+            index++;
+            if (index === $("p").length) {
+                $("p")
+                    .eq($("p").length - 1)
+                    .removeClass("highlight");
+                index = 0;
+            }
+            $("p").eq(index).prev().removeClass("highlight");
+            $("p").eq(index).addClass("highlight");
+        }
+        if (e.keyCode === 38 && !highlight) {
+            $("p")
+                .eq($("p").length - 1)
+                .addClass("highlight");
+            highlight = true;
+            index = $("p").length - 1;
+        } else if (e.keyCode === 38) {
+            index--;
+            if (index === -1) {
+                $("p").eq(0).removeClass("highlight");
+                index = $("p").length - 1;
+            }
+            $("p").eq(index).next().removeClass("highlight");
+            $("p").eq(index).addClass("highlight");
+        }
+    });
+    searchField.on("focus", function () {
+        resultsDiv.show();
+    });
     searchField.on("blur", function () {
-        console.log("BLUR happened!!");
-    });
-
-    $(".container").on("click", "p", function () {
-        console.log("clicked!!!!");
+        resultsDiv.hide();
     });
 })([
     "Afghanistan",
