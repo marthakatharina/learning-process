@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+textarea {
+    width: 500px;
+    height: 500px;
+    background-color: antiquewhite;
+    font-family: Lato;
+    font-size: 100px;
+    font-weight: 800;
+    animation: text-animation 5s linear infinite;
+}
+
+@keyframes text-animation {
+    0% {
+        font-size: 100px;
+    }
+    100% {
+        font-size: 14px;
+    }
+}
