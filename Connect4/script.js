@@ -21,20 +21,20 @@
         var slotsInRow = $(".row" + i);
         if (checkForVictory(slotsInCol)) {
             console.log("column victory");
-            // $(".victory").css({
-            //     visibility: "visible",
-            //     backgroundColor: "yellow",
-            // });
 
-            if (slotsInCol.hasClass("player1")) {
+            if (slotsInCol.eq(i).hasClass("player1")) {
                 $(".victory").css({
                     visibility: "visible",
-                    backgroundColor: "red",
+                    backgroundColor: "#DE0E0F",
+                    position: "absolute",
+                    top: "50%",
+                    left: "10%",
+                    transform: "translate(-50%, -50%)",
                 });
-            } else {
+            } else if (slotsInCol.eq(i).hasClass("player2")) {
                 $(".victory").css({
                     visibility: "visible",
-                    backgroundColor: "yellow",
+                    backgroundColor: "#FEE001",
                 });
             }
             $("#overlay").css({
@@ -42,21 +42,42 @@
             });
 
             setTimeout(function () {
-                $("button").css({ visibility: "visible" });
-            }, 2000);
+                $("button").css({
+                    visibility: "visible",
+                });
+                $("#overlay").css({
+                    background: "rgba(170, 170, 170, 0.5)",
+                });
+            }, 2500);
         } else if (checkForVictory(slotsInRow)) {
             console.log("row victory");
-            $(".victory").css({
-                visibility: "visible",
-                backgroundColor: "blue",
-            });
+
+            if (slotsInCol.eq(i).hasClass("player1")) {
+                $(".victory").css({
+                    visibility: "visible",
+                    backgroundColor: "#DE0E0F",
+                    position: "absolute",
+                    top: "50%",
+                    left: "10%",
+                    transform: "translate(-50%, -50%)",
+                });
+            } else if (slotsInCol.eq(i).hasClass("player2")) {
+                $(".victory").css({
+                    visibility: "visible",
+                    backgroundColor: "#FEE001",
+                });
+            }
+
             $("#overlay").css({
                 visibility: "visible",
             });
 
             setTimeout(function () {
                 $("button").css({ visibility: "visible" });
-            }, 2000);
+                $("#overlay").css({
+                    background: "rgba(170, 170, 170, 0.5)",
+                });
+            }, 2500);
         } else if (checkForDiagonals()) {
             console.log("diag victory");
         }
