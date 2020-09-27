@@ -42,11 +42,11 @@
             });
 
             setTimeout(function () {
+                $("#overlay").css({
+                    background: "rgba(10, 10, 10, 0.5)",
+                });
                 $("button").css({
                     visibility: "visible",
-                });
-                $("#overlay").css({
-                    background: "rgba(170, 170, 170, 0.5)",
                 });
             }, 2500);
         } else if (checkForVictory(slotsInRow)) {
@@ -73,31 +73,69 @@
             });
 
             setTimeout(function () {
-                $("button").css({ visibility: "visible" });
                 $("#overlay").css({
-                    background: "rgba(170, 170, 170, 0.5)",
+                    background: "rgba(10, 10, 10, 0.5)",
                 });
+                $("button").css({ visibility: "visible" });
             }, 2500);
-        } else if (checkForDiagonals()) {
+        } else if (checkForDiagVictory(slotsInCol)) {
             console.log("diag victory");
         }
-        // else {
-        //     console.log("no-one won!");
-        //     setTimeout(function () {
-        //         $("button").css({ visibility: "visible" });
-        //     }, 2000);
-
+        // else if (checkForNoVictory()) {
+        //     console.log("no victory!");
         // }
         switchPlayer();
     });
 
-    function checkForDiagonals() {
-        var diags = [
+    function checkForDiagVictory(slots) {
+        var diagonals = [
             [0, 7, 14, 21],
             [6, 13, 20, 27],
             [12, 19, 26, 33],
+            [18, 25, 32, 39],
+            [1, 8, 15, 22],
+            [7, 14, 21, 28],
+            [13, 20, 27, 34],
+            [19, 26, 33, 40],
+            [2, 9, 16, 23],
+            [8, 15, 22, 29],
+            [14, 21, 28, 35],
+            [20, 27, 34, 41],
+            [3, 8, 13, 18],
+            [9, 14, 19, 24],
+            [15, 20, 25, 30],
+            [21, 26, 31, 36],
+            [4, 9, 14, 19],
+            [10, 15, 20, 25],
+            [16, 21, 26, 31],
+            [22, 27, 32, 37],
+            [5, 10, 15, 20],
+            [11, 16, 21, 26],
+            [17, 22, 27, 32],
+            [23, 28, 33, 38],
         ];
+
+        var count = 0;
+        for (var i = 0; i < diagonals.length; i++) {
+            console.log("checking for diagonals");
+
+            for (var j = 0; j < diagonals[i].length; j++) {
+                console.log("checking for combinations");
+                var slot = $(diagonals[i][j]);
+
+                if (slot.hasClass(currentPlayer) === slots) {
+                    console.log("what's up?");
+                    count++;
+                    if (count === 4) {
+                        return true;
+                    }
+                } else {
+                    count = 0;
+                }
+            }
+        }
     }
+
     function checkForVictory(slots) {
         // here looping for slots
         var count = 0;
@@ -114,9 +152,14 @@
         }
     }
 
+    // function checkForNoVictory()
+
     $("button").click(function () {
         location.reload();
         // console.log("refresh");
+    });
+    $("#overlay").click(function () {
+        location.reload();
     });
 
     function switchPlayer() {
