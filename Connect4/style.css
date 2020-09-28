@@ -91,18 +91,28 @@ button:active {
     transform: translate(-45%, -48%);
 }
 
-.victory {
+.victory1 {
     position: absolute;
     top: 50%;
-    left: 90%;
-
+    left: 10%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     border: 2px solid white;
-
     width: 200px;
     height: 200px;
+    z-index: 0;
+    visibility: hidden;
+}
 
+.victory2 {
+    position: absolute;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 200px;
+    height: 200px;
     z-index: 0;
     visibility: hidden;
 }
@@ -116,4 +126,19 @@ button:active {
     left: 0;
     z-index: 1;
     visibility: hidden;
+}
+
+@media screen and (max-width: 1000px) {
+    .victory1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .victory2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }

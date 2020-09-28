@@ -23,16 +23,12 @@
             console.log("column victory");
 
             if (slotsInCol.eq(i).hasClass("player1")) {
-                $(".victory").css({
+                $(".victory1").css({
                     visibility: "visible",
                     backgroundColor: "#DE0E0F",
-                    position: "absolute",
-                    top: "50%",
-                    left: "10%",
-                    transform: "translate(-50%, -50%)",
                 });
             } else if (slotsInCol.eq(i).hasClass("player2")) {
-                $(".victory").css({
+                $(".victory2").css({
                     visibility: "visible",
                     backgroundColor: "#FEE001",
                 });
@@ -40,29 +36,17 @@
             $("#overlay").css({
                 visibility: "visible",
             });
-
-            setTimeout(function () {
-                $("#overlay").css({
-                    background: "rgba(10, 10, 10, 0.5)",
-                });
-                $("button").css({
-                    visibility: "visible",
-                });
-            }, 2500);
+            resetGame();
         } else if (checkForVictory(slotsInRow)) {
             console.log("row victory");
 
             if (slotsInCol.eq(i).hasClass("player1")) {
-                $(".victory").css({
+                $(".victory1").css({
                     visibility: "visible",
                     backgroundColor: "#DE0E0F",
-                    position: "absolute",
-                    top: "50%",
-                    left: "10%",
-                    transform: "translate(-50%, -50%)",
                 });
             } else if (slotsInCol.eq(i).hasClass("player2")) {
-                $(".victory").css({
+                $(".victory2").css({
                     visibility: "visible",
                     backgroundColor: "#FEE001",
                 });
@@ -71,18 +55,13 @@
             $("#overlay").css({
                 visibility: "visible",
             });
-
-            setTimeout(function () {
-                $("#overlay").css({
-                    background: "rgba(10, 10, 10, 0.5)",
-                });
-                $("button").css({ visibility: "visible" });
-            }, 2500);
-        } else if (checkForDiagVictory(slotsInCol)) {
+            resetGame();
+        } else if (checkForDiagVictory()) {
             console.log("diag victory");
         }
-        // else if (checkForNoVictory()) {
+        // else {
         //     console.log("no victory!");
+
         // }
         switchPlayer();
     });
@@ -117,14 +96,13 @@
 
         var count = 0;
         for (var i = 0; i < diagonals.length; i++) {
-            console.log("checking for diagonals");
-
+            // console.log("checking for diagonals");
+            // var combinations = $(slots[i]);
             for (var j = 0; j < diagonals[i].length; j++) {
-                console.log("checking for combinations");
+                // console.log("checking for combinations");
                 var slot = $(diagonals[i][j]);
 
                 if (slot.hasClass(currentPlayer) === slots) {
-                    console.log("what's up?");
                     count++;
                     if (count === 4) {
                         return true;
@@ -152,15 +130,25 @@
         }
     }
 
-    // function checkForNoVictory()
+    // function checkForNoVictory() {
+    //
+    // }
 
-    $("button").click(function () {
-        location.reload();
-        // console.log("refresh");
-    });
-    $("#overlay").click(function () {
-        location.reload();
-    });
+    function resetGame() {
+        setTimeout(function () {
+            $("#overlay").click(function () {
+                location.reload();
+            });
+            $("button").click(function () {
+                location.reload();
+                // console.log("refresh");
+            });
+            $("#overlay").css({
+                background: "rgba(10, 10, 10, 0.5)",
+            });
+            $("button").css({ visibility: "visible" });
+        }, 2500);
+    }
 
     function switchPlayer() {
         if (currentPlayer === "player1") {
