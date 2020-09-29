@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+
+    <title>Authors</title>
+</head>
+
+<body>
+    <div class="container"></div>
+
+    <script id="authors" type="text/x-handlebars-template">
+            {{#authors}}
+            <div class="card">
+                <img src={{photo}} alt="">
+                <h2>{{name}}</h2>
+                <div class="values dates-values">
+                <h3>{{born}} - {{died}}</h3>
+                </div>
+
+                <h4 class="properties publications">Selected Writings:</h4>
+                <div class="values publications-values">
+                    {{#selectedWritings}}
+                        <p>{{ . }}</p>
+                    {{/selectedWritings}}
+                </div>
+
+                <h4 class="properties quote">Famous Quote:</h4>
+                <div class="values quote-values">
+                   <p>{{quote}}</p>
+                   </div>
+                    
+               
+
+            </div>
+            {{/authors}}
+        </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+
+</body>
+
+</html>
