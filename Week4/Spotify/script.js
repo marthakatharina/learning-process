@@ -86,11 +86,21 @@
                         } else {
                             $("#more-btn").show();
                         }
-                    } else {
+                    } else if (!i) {
                         $("#results-message").html(
                             "No results for " + userInput + ":"
                         );
-                        $("#results-container").html("");
+                    }
+
+                    // nextUrl = responseData.next;
+                    // if (nextUrl) {
+                    //     if 
+                    //     checkScrollPosition();
+
+                    // }
+
+                    function checkScrollPosition() {
+                        if (location.search.indexOf("scroll"))
                     }
                 },
             });
