@@ -1,6 +1,7 @@
 (function () {
     // console.log("sanity check myself:", $);
     $("#more-btn").hide();
+    var newUrl;
 
     $("#submit-btn").on("click", function () {
         // console.log('yo gimme gimme got clicked');
@@ -9,7 +10,6 @@
         var albumOrArtist = $("select").val();
         // console.log("user want either artist or album?", albumOrArtist);
         var myHtml = "";
-        var newUrl;
 
         var baseUrl = "https://spicedify.herokuapp.com/spotify";
 
@@ -86,21 +86,55 @@
                         } else {
                             $("#more-btn").show();
                         }
-                    } else if (!i) {
-                        $("#results-message").html(
-                            "No results for " + userInput + ":"
-                        );
                     }
 
-                    // nextUrl = responseData.next;
-                    // if (nextUrl) {
-                    //     if 
-                    //     checkScrollPosition();
+                    function moreResults() {
+                        $.ajax({
+                            url: newUrl,
+                            method: "GET",
+                            success: function (responseData) {
+                                responseData =
+                                    responseData.artists || responseData.albums; //eliminate one layer of nestedness
+                                loadNextUrl(responseData.next);
+                                $("#results-container").append(
+                                    ajaxDataRequest(responseData.items)
+                                );
+                                checkScrollPosition();
+                            },
+                        });
+                    }
 
-                    // }
+                    function loadNextUrl(nextUrl) {
+                        newUrl =
+                            nextUrl &&
+                            nextUrl.replace(
+                                "api.spotify.com/v1/search",
+                                "spicedify.herokuapp.com/spotify"
+                            );
+                        if (!newUrl) {
+                            $("#more-btn").hide();
+                        } else {
+                            $("#more-btn").show();
+                        }
+                    }
 
                     function checkScrollPosition() {
-                        if (location.search.indexOf("scroll"))
+                        if (location.search.indexOf("scroll=infinite") > -1) {
+                            $("#more-btn").hide();
+                            if (
+                                $(window).height() + $(document).scrollTop() >=
+                                $(document).height() - 100
+                            ) {
+                                var hasScrolledToBottom = true;
+                            }
+                            if (hasScrolledToBottom) {
+                                if (newUrl) {
+                                    moreResults();
+                                }
+                            } else {
+                                setTimeout(checkScrollPosition, 500);
+                            }
+                        }
                     }
                 },
             });
