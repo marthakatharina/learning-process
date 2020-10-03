@@ -30,7 +30,7 @@ function playGame(storyObj) {
     rl.question(storyObj.q, (answer) => {
         // console.log("storyObj.answers[answer]: ", storyObj.answers[answer]);
         if (storyObj.answers[answer]) {
-            if (typeof storyObj.answers[answer] == "object") {
+            if (typeof storyObj.answers[answer] == "string") {
                 playGame(storyObj.answers[answer]);
             } else {
                 console.log(storyObj.answers[answer]);
