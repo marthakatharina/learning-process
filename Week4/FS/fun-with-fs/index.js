@@ -50,11 +50,13 @@ function mapSizes(path) {
             return obj;
         }
     }
-    // mapSizes(`${path}/files`);
-
-    // var newFile = JSON.stringify(obj, null, 4);
-
-    // fs.writeFileSync(`${path}/files/files.json`, newFile);
 }
 
 mapSizes(fullPath);
+
+let newPath = `${fullPath}/files`;
+mapSizes(newPath);
+
+var newFile = JSON.stringify(newPath, null, 4);
+
+fs.writeFileSync(`${fullPath}/files/files.json`, newFile);
