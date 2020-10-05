@@ -81,11 +81,7 @@
 
                         $("#results-container").html(myHtml);
 
-                        if (!nextUrl) {
-                            $("#more-btn").hide();
-                        } else {
-                            $("#more-btn").show();
-                        }
+                        loadNextUrl(newUrl);
                     }
 
                     function moreResults() {
@@ -94,7 +90,7 @@
                             method: "GET",
                             success: function (responseData) {
                                 responseData =
-                                    responseData.artists || responseData.albums; //eliminate one layer of nestedness
+                                    responseData.artists || responseData.albums;
                                 loadNextUrl(responseData.next);
                                 $("#results-container").append(
                                     ajaxDataRequest(responseData.items)
