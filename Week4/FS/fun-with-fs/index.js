@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const fullPath = __dirname;
+// const fullPath = `${__dirname}/files`;
 
 function logSizes(path) {
     fs.readdir(path, { withFileTypes: true }, (err, content) => {
@@ -29,34 +29,48 @@ function logSizes(path) {
     });
 }
 
-logSizes(fullPath);
+// function mapSizes(path) {
+//     const myDir = fs.readdirSync(path, { withFileTypes: true });
+//     console.log("readdirSync has this value:", myDir);
+//     let obj = {};
+//     for (var i = 0; i < myDir.length; i++) {
+//         console.log("name of the property is:", myDir[i].name);
+//         if (myDir[i].isFile()) {
+//             obj[myDir[i].name] = myDir[i].size;
+//             const myStat = fs.statSync(`${path}/${myDir[i].name}`);
+//             console.log(
+//                 `myStat for ${path}/${myDir[i].name} value is:`,
+//                 myStat
+//             );
+//         } else if (myDir[i].isDirectory()) {
+//             obj[myDir[i].name] = mapSizes(`${path}/${myDir[i].name}`);
+//         } else {
+//             return obj;
+//         }
+//     }
+// }
+
+// David's way:
 
 function mapSizes(path) {
-    const myDir = fs.readdirSync(path, { withFileTypes: true });
-    console.log("readdirSync has this value:", myDir);
-    let obj = {};
-    for (var i = 0; i < myDir.length; i++) {
-        console.log("name of the property is:", myDir[i].name);
-        if (myDir[i].isFile()) {
-            obj[myDir[i].name] = myDir[i].size;
-            const myStat = fs.statSync(`${path}/${myDir[i].name}`);
-            console.log(
-                `myStat for ${path}/${myDir[i].name} value is:`,
-                myStat
-            );
-        } else if (myDir[i].isDirectory()) {
-            obj[myDir[i].name] = mapSizes(`${path}/${myDir[i].name}`);
-        } else {
-            return obj;
+    const files = fs.readdirSync(path, { withFileTypes: true });
+    const obj = {};
+    for (let i = 0; i < files.length; i++) {
+        const nextPath = `${path}/${files[i].name}`;
+        if (files[i].isDirectory()) {
+            obj[files[i].name] = mapSizes(nextPath);
+        }
+        if (files[i].isFile()) {
+            const { size } = fs.statSync(nextPath);
+            obj[files[i].name] = size;
         }
     }
+    return obj;
 }
 
-// mapSizes(fullPath);
+logSizes(`${__dirname}/files`);
 
-let newPath = `${fullPath}/files`;
-mapSizes(newPath);
-
-let newFile = JSON.stringify(newPath, null, 4);
-
-fs.writeFileSync(`${fullPath}/files/files.json`, newFile);
+fs.writeFileSync(
+    "files.json",
+    JSON.stringify(mapSizes(`${__dirname}/files`), null, 4)
+);

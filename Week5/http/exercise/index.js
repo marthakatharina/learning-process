@@ -30,9 +30,9 @@ http.createServer((req, res) => {
         res.statusCode = 302;
         res.end();
     } else if (
-        !req.method === "GET" ||
-        !req.method === "HEAD" ||
-        !req.method === "POST"
+        req.method !== "GET" ||
+        req.method !== "HEAD" ||
+        req.method !== "POST"
     ) {
         res.statusCode = 302;
         res.end();
