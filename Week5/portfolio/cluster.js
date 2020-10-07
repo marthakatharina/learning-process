@@ -19,3 +19,5 @@ cluster.on("exit", (worker) => {
     console.log("this worker has died", worker.process.pid);
     cluster.fork(); // replacing the worker which has died
 }); // used when a worker dies
+
+// cluster prevents website form going down due to an error

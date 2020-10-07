@@ -13,25 +13,6 @@ function generateHtml() {
 
 module.exports.generateHtml = generateHtml;
 
-/// creating new module in node async way (fs.readdir) ///
-
-// function generateHtml(response) {
-//     let myHtml = "";
-//     console.log("i'm going to return some html");
-//     fs.readdir(`${__dirname}/projects`, (err, files) => {
-//         if (err) {
-//             console.log("error: ", err);
-//         }
-
-//         files.forEach((arg) => {
-//             myHtml += "<ul><li><a href=" / `${arg}` / ">${arg}</a></li><ul>";
-//         });
-//         response.end(myHtml);
-//     });
-// }
-// module.exports.generateHtml = generateHtml;
-// console.log("module.exports:", module.exports);
-
 // this fn bilds a string tag of html
 // console.log("module.exports:", module.exports);
 // module.exports.generateHtml = generateHtml;
