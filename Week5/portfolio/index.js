@@ -27,8 +27,8 @@ http.createServer((req, res) => {
         return res.end(); //return makes that any code after it will not run
     }
     // console.log("req.url:", req.url);
-    const filePath = path.normalize(__dirname + "/projects" + req.url);
-    // console.log("filePath:", filePath); // shows the path
+    const filePath = path.posix.normalize(__dirname + "/projects" + req.url);
+    console.log("filePath:", filePath); // shows the path
 
     //traversal attack or dot dot slash (../):
     // console.log("/users/martawlusek/.../.../.../wp-config");
@@ -68,17 +68,9 @@ http.createServer((req, res) => {
             };
             // console: obj[".css"] // "text/css"
 
-            const readStreamHtml = fs.createReadStream(filePath);
             res.setHeader("Content-Type", file[path.extname(filePath)]);
-
-            readStreamHtml.pipe(res);
-            readStreamHtml.on("error", (err) => {
-                console.log("err in readStreamHtml", err);
-                res.statusCode = 500;
-                res.end();
-            });
-
-            // res.setHeader("Content-Type", file[path.extname(filePath)]); sets adequate header
+            console.log("path.extname(filePath): ", path.extname(filePath));
+            // res.setHeader("Content-Type", file[path.extname(filePath)]); sets adequate header:
             // res.setHeader("Content-Type", "text/html");
             // res.setHeader("Content-Type", "text/css");
             // res.setHeader("Content-Type", "application/json");
@@ -86,6 +78,14 @@ http.createServer((req, res) => {
             // res.setHeader("Content-Type", "image/jpeg");
             // res.setHeader("Content-Type", "image/png");
             // res.setHeader("Content-Type", "image/svg+xml");
+
+            const readStreamHtml = fs.createReadStream(filePath);
+            readStreamHtml.pipe(res);
+            readStreamHtml.on("error", (err) => {
+                console.log("err in readStreamHtml", err);
+                res.statusCode = 500;
+                res.end();
+            });
         } else {
             console.log("it's a directory");
             if (req.url.endsWith("/")) {
