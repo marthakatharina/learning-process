@@ -1,0 +1,26 @@
+
+
+    <h1>
+        {{#emojis}}
+        {{.}}
+        {{/emojis}}
+
+    </h1>
+    
+
+
+
+{{!-- if there is a main handlebars template we delete html frame from other handlebars html files --}} 
+
+{{!-- refers to the loop: 
+app.get('/about', (req, res) => {
+    res.render('about', {
+        emojis: [
+            '😎',
+            '🥶',
+            '😷',
+            '💄',
+            '👩🏻‍🎤'
+        ]
+    });
+}); --}}

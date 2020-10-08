@@ -1,0 +1,9 @@
+[
+    { "name": "alister" },
+    { "name": "ivana" },
+    { "name": "merle" },
+    { "name": "david" },
+    { "name": "pete" }
+]
+
+// list of projects is storred in json file hardcoded

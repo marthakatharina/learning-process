@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Carousel",
+        "directory": "carousel"
+    },
+    {
+        "title": "Connect Four",
+        "directory": "connect4"
+    },
+    {
+        "title": "Incremental Search",
+        "directory": "incremantal_search"
+    },
+    {
+        "title": "Panes",
+        "directory": "panes"
+    },
+    {
+        "title": "Spotify",
+        "directory": "spotify"
+    },
+    {
+        "title": "Ticker",
+        "directory": "ticker"
+    },
+    {
+        "title": "Webpage",
+        "directory": "webpage"
+    }
+]

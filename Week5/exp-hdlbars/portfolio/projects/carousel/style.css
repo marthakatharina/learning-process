@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+}
+
+.kitty-container {
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+}
+
+.kitty-container img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateX(100%);
+}
+
+.kitty-container img.onscreen {
+    transform: translateX(0);
+    transition: transform 3s;
+}
+
+.kitty-container img.offscreen-left {
+    transform: translateX(-100%);
+    transition: transform 3s;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#dots {
+    position: absolute;
+    display: flex;
+    bottom: 30px;
+    justify-content: center;
+    width: 100%;
+}
+
+.dot {
+    height: 20px;
+    width: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin: 4px;
+}
+
+.on {
+    background-color: white;
+}

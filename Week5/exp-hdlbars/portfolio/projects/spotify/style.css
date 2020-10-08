@@ -1,0 +1,11 @@
+body {
+    background: linear-gradient(to bottom, #2bb954, black 70%);
+    min-height: 100vh;
+}
+
+#results-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
