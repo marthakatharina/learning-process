@@ -1,3 +1,9 @@
 body {
-    background-color: plum;
+    background-color: lightgray;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
