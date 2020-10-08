@@ -3,15 +3,27 @@ const app = express();
 const cookieParser = require("cookie-parser");
 
 app.use(express.urlencoded({ extended: false }));
-// app.use((req, res, next) => {
-//     console.log("MIDDLEWARE running!!");
-//     console.log(`a ${req.method} request was made to the ${req.url} route`);
-//     next();
-// });
+
+const basicAuth = require("basic-auth");
+
+const auth = function (req, res, next) {
+    const creds = basicAuth(req);
+    if (!creds || creds.name != "marta" || creds.pass != "123") {
+        res.setHeader(
+            "WWW-Authenticate",
+            'Basic realm="Enter your credentials to see this stuff."'
+        );
+        res.sendStatus(401);
+    } else {
+        next();
+    }
+};
+
+app.use(auth);
 
 app.use(cookieParser());
 
-app.use(express.static("./projects"));
+// app.use(express.static("./projects"));
 
 app.get("/", (req, res) => {
     console.log("req.cookies: ", req.cookies);
@@ -24,7 +36,8 @@ app.get("/cookie", (req, res) => {
         <h2>Welcome to my Portfolio. To access all the content of my website you need to agree to the cookies policy </h2>
         <form method='POST' style="display: flex; flex-direction: column; justify-content: space-between; width: 40%; height: 50%;">
             <div>
-                <input type="checkbox" name="cookies"><span>Do you accept cookies?</span>
+            <h3>Do you accept cookies?</h3>
+                <input type="checkbox" name="accept"><span>yes</span> <input type="checkbox" name="decline"><span>no</span>
                 <button> submit </submit>
             </div>     
         </form>
@@ -32,18 +45,13 @@ app.get("/cookie", (req, res) => {
 });
 
 app.post("/cookie", (req, res) => {
-    const { cookies } = req.body;
-    res.cookie("first-cookie", "this is sooo exciting!!!");
-    res.cookie("authenticated", true);
+    const { accept, decline } = req.body;
+
     console.log("POST request made to the /cookie route");
-    if (cookies) {
-        res.send(`
-            <h1>Thank you for accepting cookies!</h1>
-            <h2>Now, you can see all the projects I worked so hard on at the Spiced Academy</h2>
-            
-        
-        `);
-    } else {
+    if (accept) {
+        res.cookie("authenticated", true);
+        res.redirect(req.cookies.url);
+    } else if (decline) {
         res.send(`
             <h1> I am sorry you didn't want to check out my projects</h1>
             <h3>Don't worry, they will be here when you come back</h3>
@@ -51,13 +59,17 @@ app.post("/cookie", (req, res) => {
     }
 });
 
-app.get("/", (req, res) => {
+app.use((req, res, next) => {
     console.log("req.cookies: ", req.cookies);
     if (req.cookies.authenticated) {
-        res.sendFile(__dirname + "/index.html");
+        next();
     } else {
+        console.log(req.originalUrl);
+        res.cookie("url", req.originalUrl);
         res.redirect("/cookie");
     }
 });
+
+app.use(express.static("./projects"));
 
 app.listen(8080, () => console.log("Server Listening!"));
