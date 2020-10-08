@@ -8,7 +8,7 @@ const basicAuth = require("basic-auth");
 
 const auth = function (req, res, next) {
     const creds = basicAuth(req);
-    if (!creds || creds.name != "marta" || creds.pass != "123") {
+    if (!creds || creds.name != "marta" || creds.pass != "1234") {
         res.setHeader(
             "WWW-Authenticate",
             'Basic realm="Enter your credentials to see this stuff."'
@@ -19,7 +19,7 @@ const auth = function (req, res, next) {
     }
 };
 
-app.use(auth);
+app.use("/panes", auth);
 
 app.use(cookieParser());
 
