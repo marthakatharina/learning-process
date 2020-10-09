@@ -4,14 +4,6 @@ const handlebars = require("express-handlebars");
 const projectsData = require("./proj-data.json");
 console.log("projects: ", projectsData);
 
-const hbSet = handlebars.create({
-    helpers: {
-        globalHello() {
-            return "Global Hello right back!! 👋";
-        },
-    },
-});
-
 app.engine("handlebars", handlebars());
 app.set("view engine", "handlebars");
 
