@@ -1,30 +1,37 @@
 [
     {
         "title": "Carousel",
-        "directory": "carousel"
+        "directory": "carousel",
+        "description": "something something"
     },
     {
         "title": "Connect Four",
-        "directory": "connect4"
+        "directory": "connect4",
+        "description": "something something"
     },
     {
         "title": "Incremental Search",
-        "directory": "incremantal_search"
+        "directory": "incremantal_search",
+        "description": "something something"
     },
     {
         "title": "Panes",
-        "directory": "panes"
+        "directory": "panes",
+        "description": "something something"
     },
     {
         "title": "Spotify",
-        "directory": "spotify"
+        "directory": "spotify",
+        "description": "something something"
     },
     {
         "title": "Ticker",
-        "directory": "ticker"
+        "directory": "ticker",
+        "description": "something something"
     },
     {
         "title": "Webpage",
-        "directory": "webpage"
+        "directory": "webpage",
+        "description": "something something"
     }
 ]

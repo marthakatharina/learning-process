@@ -1,0 +1,14 @@
+{{!-- <button>SUBMIT</button> --}}
+
+{{!-- // to be insterted in other templates {{>button}}  or {>button icon=true}}--
+{{!-- partial is a snippet of code that can be inserted anywhere and on a few pages--}}
+
+// looping over the array of projects:
+{{#projects}}
+// here some code (#if, #else)
+{{/projects}} 
+
+{{>projects}}
+we have to use conditional rendering for our images on other pages
+// we have to pass selected project and project list
+//link button - using <a> tag</a> and then style them 

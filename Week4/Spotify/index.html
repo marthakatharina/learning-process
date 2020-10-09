@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Spotif Search</title>
-</head>
-<body>
-    <input type="text" name="user-input"/>
-    <select>
-        <option id="artist">artist</option>
-        <option id="album">album</option>
-    </select>
-    <button id="submit-btn">Search</button>
-     <div id="results-message"></div>
-
-    <div id="results-container">
-       <div class="results-spotify">
-           <a href="">
-               <div><img src="" /></div>
-                <div class="name"></div>
-            </a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Spotif Search</title>
+    </head>
+    <body>
+        <div id="search-container">
+            <img src="2111627.svg" width="80p" heigh="80" />
+            <input type="text" name="user-input" />
+            <select>
+                <option id="artist">artist</option>
+                <option id="album">album</option>
+            </select>
+            <button id="submit-btn">Search</button>
         </div>
-    </div>
-    
-    <button id="more-btn">More</button>
-   
+        <div id="results-message"></div>
 
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <div id="results-container">
+            <div class="results-spotify">
+                <a href="">
+                    <div><img src="" /></div>
+                    <div class="name"></div>
+                </a>
+            </div>
+        </div>
 
-    <script src="script.js"></script>
-</body>
+        <button id="more-btn">More</button>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+        <script src="script.js"></script>
+    </body>
 </html>

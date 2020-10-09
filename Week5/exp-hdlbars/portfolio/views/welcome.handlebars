@@ -1,10 +1,11 @@
-<h1>HOME</h1>
-<h3>Welcome to my Portfolio</h3>
+<h1>Welcome to my Portfolio</h1>
 
-<h3>PROJECTS:</h3>
-<div>
+{{!-- <h3>PROJECTS:</h3>
+
     {{#projectsData}}
+    <div>
     <figure><a href="{{directory}}"><img src='/{{directory}}/screenshot.png' width="400"><figcaption>{{title}}</figcaption></a></figure>
-   
-    {{/projectsData}}
-</div>
+   </div>
+    {{/projectsData}} --}}
+
+    {{>projectlist screenshot=true}}
