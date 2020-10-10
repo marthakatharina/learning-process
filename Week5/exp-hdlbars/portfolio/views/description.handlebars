@@ -1,13 +1,5 @@
- {{>projectlist}}
-
-{{!-- <h3>PROJECTS:</h3> --}}
-
-
-{{!-- {{#projectsData}}
-<div id="navbar">
-    <a href="{{directory}}">{{title}}</a>  
-</div>
-{{/projectsData}} --}}
+ 
+ <nav>{{>projectlist}}</nav>
 
  
 
@@ -15,7 +7,9 @@
 <div id="description">
     <h2>{{title}}</h2>
     <figure><img src='/{{directory}}/screenshot.png' width="600"><figcaption>{{description}}</figcaption></figure>
-   <a href="{{directory}}">{{title}}</a>
+   <a href="/{{directory}}" target="_blank">Launch</a>
 </div>
 {{/selectedProject}}
+
+
 
