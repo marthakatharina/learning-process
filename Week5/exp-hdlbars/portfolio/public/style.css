@@ -1,8 +1,95 @@
 body {
-    background-color: lightgray;
+    background-color: white;
+    font-family: "Montserrat", sans-serif;
 }
 
-div {
+h1,
+h3 {
+    margin: 40px 20px;
+    font-weight: 800;
+    color: white;
+    background-color: black;
+    padding: 5px;
+}
+
+.home {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.home-image {
+    border: 1px solid black;
+    margin: 40px;
+}
+
+.home-title {
+    width: 320px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.home-title:hover {
+    background-color: palevioletred;
+}
+
+.project-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+figure {
+    width: 600px;
+}
+
+figcaption {
+    background-color: black;
+    color: white;
+    text-align: justify;
+    padding: 5px;
+}
+
+#description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 170px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+}
+
+.navbar {
+    margin: 20px;
+    font-size: larger;
+    color: white;
+    background-color: black;
+    /* padding: 5px;  */
+}
+
+.navbar:hover {
+    background-color: palevioletred;
+}
+
+.button {
+    text-decoration: none;
+    font-size: larger;
+    font-weight: 800;
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+    padding: 15px;
+}
+
+.button:hover {
+    background-color: palevioletred;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    /* background-color: black; */
 }

@@ -1,25 +1,26 @@
 
-<h3>PROJECTS:</h3>
+{{!-- <h3>PROJECTS:</h3> --}}
 
 {{#if screenshot}}
 
-
-{{#projectsData}}
+ 
   
-    <div>
-    <figure><a href="/projects/{{directory}}"><img src='/{{directory}}/screenshot.png' width="400"><figcaption>{{title}}</figcaption></a></figure>
+    <div class="home">
+      {{#projectsData}}
+    <div class="home-image"><a href="/projects/{{directory}}"><img src='/{{directory}}/screenshot.png' width="320"><div class="home-title">{{title}}</div></a></div>
+    {{/projectsData}}
    </div>
  
-  {{/projectsData}}
+  
    
 
 {{else}}
 
   {{#projectsData}} 
 
-<div>
-    <a href="{{directory}}">{{title}}</a>  
-</div>
+
+    <a href="{{directory}}"><p class="navbar">{{title}}</p></a>  
+
 
 {{/projectsData}}
 

@@ -1,15 +1,20 @@
+ <div class="project-container">
+
+ <nav>
+     <h1>MY PROJECTS:</h1>
  
- <nav>{{>projectlist}}</nav>
+ {{>projectlist}}
+ </nav>
 
  
 
 {{#selectedProject}}
-<div id="description">
+<div id="description-container">
     <h2>{{title}}</h2>
-    <figure><img src='/{{directory}}/screenshot.png' width="600"><figcaption>{{description}}</figcaption></figure>
-   <a href="/{{directory}}" target="_blank">Launch</a>
+    <figure><img src='/{{directory}}/screenshot.png' width="600"><figcaption class>{{description}}</figcaption class="description"></figure>
+   <a href="/{{directory}}" target="_blank"><p class="button">Go to Project</p></a></div>
+
+{{/selectedProject}} 
+
+
 </div>
-{{/selectedProject}}
-
-
-
