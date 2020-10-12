@@ -55,7 +55,7 @@ figcaption {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 0px;
     margin-right: 170px;
     margin-bottom: 20px;
     margin-left: 0px;
@@ -66,7 +66,6 @@ figcaption {
     font-size: larger;
     color: white;
     background-color: black;
-    /* padding: 5px;  */
 }
 
 .navbar:hover {
@@ -91,5 +90,10 @@ figcaption {
 a {
     text-decoration: none;
     color: white;
-    /* background-color: black; */
+}
+
+p {
+    background-color: black;
+    color: white;
+    padding: 5px;
 }
