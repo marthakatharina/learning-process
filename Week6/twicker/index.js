@@ -37,10 +37,3 @@ app.get("/links.json", (req, res) => {
 }); //links.json is name of file in ajax
 
 app.listen(8080, () => console.log("twicker up and running"));
-
-// function logToken(token) (
-//     console.log("I need the token to do something", token);
-// )
-// const { getToken } = require("./ticker.js");
-
-// logToken(token);
