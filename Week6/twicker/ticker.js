@@ -1,8 +1,8 @@
 const secret = require("./secret.json"); // const { Key, Secret } = require('./secrets.json');
 const https = require("https"); //https is secure
-const { type } = require("os");
-const { response } = require("express");
-const querystring = require("querystring");
+// const { type } = require("os");
+// const { response } = require("express");
+// const querystring = require("querystring");
 
 module.exports.getToken = function (callback) {
     // this function will get the token from twitter - makes req to tweeter
@@ -68,18 +68,33 @@ module.exports.getTweets = function (bearerToken, callback) {
         getResponse.on("end", function () {
             let parsedBody = JSON.parse(body);
             console.log("parsedBody: ", parsedBody);
-            callback(null, parsedBody.access_token);
+            callback(null, parsedBody);
         });
     }
 
     const req = https.request(getOptions, getCb);
-    req.end("full_text");
+    req.end();
 }; // req sent to twitter to get the tweets
 
-// module.exports.filterTweets = function (tweets) {
-//     // this function will tidy up the tweets from twitter
+module.exports.filterTweets = function (tweets) {
+    // this function will tidy up the tweets from twitter
 
-// };
+    let tweetUrl = [];
+    let filterUrls = (url) => {
+        return url.entities.urls.length === 1;
+    };
+    let filteredUrls = tweets.filter(filterUrls);
+    console.log("filteredUrls:", filteredUrls);
+
+    for (let i = 0; i < filteredUrls.length; i++) {
+        tweetUrl.push({
+            text: filteredUrls[i]["full_text"].split("http")[0],
+            href: filteredUrls[i].entities.urls[0].url,
+        });
+        console.log("filteredUrls: ", filteredUrls[i].entities.urls);
+    }
+    return tweetUrl;
+};
 
 // module.exports.getToken = function(callback) {
 //     console.log('callback in getToken: ',callback);

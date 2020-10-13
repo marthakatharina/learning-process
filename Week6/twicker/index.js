@@ -25,12 +25,11 @@ app.get("/links.json", (req, res) => {
                 console.log("Error in getTweets", err);
                 return;
             }
-            console.log("tweets: ", tweets);
 
-            // // 3. "tidy up" and format the tweets:
-            // cons filteredTweets = filterTweets(tweets)
-            // // 4. send back those "filteredTweets" as a response
-            // res.json(filteredTweets);
+            // 3. "tidy up" and format the tweets:
+            const filteredTweets = filterTweets(tweets);
+            // 4. send back those "filteredTweets" as a response
+            res.json(filteredTweets);
         });
     });
 
