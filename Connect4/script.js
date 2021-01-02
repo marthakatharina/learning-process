@@ -56,60 +56,73 @@
                 visibility: "visible",
             });
             resetGame();
-        } else if (checkForDiagVictory()) {
+        } else if (checkForDiagonalVictory()) {
             console.log("diag victory");
+            if (slotsInCol.eq(i).hasClass("player1")) {
+                $(".victory1").css({
+                    visibility: "visible",
+                    backgroundColor: "#DE0E0F",
+                });
+            } else if (slotsInCol.eq(i).hasClass("player2")) {
+                $(".victory2").css({
+                    visibility: "visible",
+                    backgroundColor: "#FEE001",
+                });
+            }
+
+            $("#overlay").css({
+                visibility: "visible",
+            });
+            resetGame();
         }
         // else {
         //     console.log("no victory!");
-
+        //     alert("No Win!");
         // }
         switchPlayer();
     });
 
-    function checkForDiagVictory(slots) {
-        var diagonals = [
-            [0, 7, 14, 21],
-            [6, 13, 20, 27],
-            [12, 19, 26, 33],
-            [18, 25, 32, 39],
-            [1, 8, 15, 22],
-            [7, 14, 21, 28],
-            [13, 20, 27, 34],
-            [19, 26, 33, 40],
-            [2, 9, 16, 23],
-            [8, 15, 22, 29],
-            [14, 21, 28, 35],
-            [20, 27, 34, 41],
-            [3, 8, 13, 18],
-            [9, 14, 19, 24],
-            [15, 20, 25, 30],
-            [21, 26, 31, 36],
-            [4, 9, 14, 19],
-            [10, 15, 20, 25],
-            [16, 21, 26, 31],
-            [22, 27, 32, 37],
-            [5, 10, 15, 20],
-            [11, 16, 21, 26],
-            [17, 22, 27, 32],
-            [23, 28, 33, 38],
-        ];
+    var slots = $(".slot");
 
-        var count = 0;
-        for (var i = 0; i < diagonals.length; i++) {
-            // console.log("checking for diagonals");
-            // var combinations = $(slots[i]);
-            for (var j = 0; j < diagonals[i].length; j++) {
-                // console.log("checking for combinations");
-                var slot = $(diagonals[i][j]);
+    var diags = [
+        [0, 7, 14, 21],
+        [1, 8, 15, 22],
+        [2, 9, 16, 23],
+        [3, 8, 13, 18],
+        [4, 9, 14, 19],
+        [5, 10, 15, 20],
+        [6, 13, 20, 27],
+        [7, 14, 21, 28],
+        [8, 15, 22, 29],
+        [9, 14, 19, 24],
+        [10, 15, 20, 25],
+        [11, 16, 21, 26],
+        [12, 19, 26, 33],
+        [13, 20, 27, 34],
+        [14, 21, 28, 35],
+        [15, 20, 25, 30],
+        [16, 21, 26, 31],
+        [17, 22, 27, 32],
+        [18, 25, 32, 39],
+        [19, 26, 33, 40],
+        [20, 27, 34, 41],
+        [21, 26, 31, 36],
+        [22, 27, 32, 37],
+        [23, 28, 33, 38],
+    ];
 
-                if (slot.hasClass(currentPlayer) === slots) {
-                    count++;
-                    if (count === 4) {
-                        return true;
-                    }
-                } else {
-                    count = 0;
-                }
+    diags = diags.map(function (arr) {
+        var elems = slots.eq(arr.shift());
+        while (arr.length) {
+            elems = elems.add(slots.eq(arr.shift()));
+        }
+        return elems;
+    });
+
+    function checkForDiagonalVictory() {
+        for (var i = 0; i < diags.length; i++) {
+            if (checkForVictory(diags[i])) {
+                return true;
             }
         }
     }
